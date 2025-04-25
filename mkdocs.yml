@@ -1,0 +1,52 @@
+site_name: dbt-prep-flow-converter
+repo_url: https://github.com/VDFaller/dbt-prep-flow-converter
+site_url: https://VDFaller.github.io/dbt-prep-flow-converter
+site_description: A converter from Tableau Prep Flows to dbt SQL.  Currently running on dbt-duckdb/dbt-databricks and openAI only.
+site_author: Vince Faller
+edit_uri: edit/main/docs/
+repo_name: VDFaller/dbt-prep-flow-converter
+copyright: Maintained by <a href="https://VDFaller.com">VDFaller</a>.
+
+nav:
+  - Home: index.md
+  - Modules: modules.md
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: ["src/dbt_prep_flow_converter"]
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/VDFaller/dbt-prep-flow-converter
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/dbt-prep-flow-converter
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
