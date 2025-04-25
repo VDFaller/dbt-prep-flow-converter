@@ -12,6 +12,8 @@ from langchain_core.messages import BaseMessage
 from langchain_openai import ChatOpenAI
 
 HERE = Path(__file__).parent
+
+
 # %%
 def get_flow_file_from_tfl(path: Path | str) -> str:
     """Get the JSON content from a TFL file contained in a zip archive.
@@ -51,6 +53,7 @@ def get_human_prompt() -> HumanMessagePromptTemplate:
         human_prompt = f.read()
     return HumanMessagePromptTemplate(prompt=PromptTemplate(template=human_prompt, input_variables=["flow_text"]))
 
+
 def get_sql_text() -> str:
     """Get the sql from all the files in jaffle_shop_files/*.sql.
 
@@ -63,6 +66,7 @@ def get_sql_text() -> str:
             query_txt = f.read()
         txt += f"\n\n```sql\n-- {file.stem}\n\n{query_txt}\n```"
     return txt
+
 
 def run(path_to_flow_file: Path | str) -> list[BaseMessage]:
     """Convert a TFL file to messages using prompt templates.

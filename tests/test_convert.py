@@ -5,7 +5,6 @@ from zipfile import ZipFile
 import pytest
 from langchain_core.messages import BaseMessage
 from langchain_core.runnables.base import RunnableSequence
-from langchain_openai import ChatOpenAI
 from pytest_mock import MockerFixture
 
 from dbt_prep_flow_converter.convert import (
@@ -18,6 +17,7 @@ from dbt_prep_flow_converter.convert import (
 
 # %%
 
+
 @pytest.fixture
 def fake_tfl():
     """Fixture to a tfl file."""
@@ -29,26 +29,25 @@ def fake_tfl():
     # Cleanup
     fp.unlink(missing_ok=True)
 
+
 def test_get_flow_file_from_tfl(fake_tfl):
     assert get_flow_file_from_tfl(fake_tfl) == '{"key": "value"}'
 
 
-
 def test_get_system_prompt():
-    path_to_prompt = Path(__file__).parent.parent/"src/dbt_prep_flow_converter/prompts/system_prompt.txt"
+    path_to_prompt = Path(__file__).parent.parent / "src/dbt_prep_flow_converter/prompts/system_prompt.txt"
     assert get_system_prompt().prompt.template == path_to_prompt.read_text()
 
 
 def test_get_human_prompt():
-    path_to_prompt = Path(__file__).parent.parent/"src/dbt_prep_flow_converter/prompts/prompt.txt"
+    path_to_prompt = Path(__file__).parent.parent / "src/dbt_prep_flow_converter/prompts/prompt.txt"
     assert get_human_prompt().prompt.template == path_to_prompt.read_text()
 
 
 def test_get_sql_text():
     """Just going to select a random file in the jaffle_shop_files directory."""
-    fp = Path(__file__).parent.parent/"src/dbt_prep_flow_converter/jaffle_shop_files/orders.sql"
-    assert fp.read_text() in get_sql_text()  
-
+    fp = Path(__file__).parent.parent / "src/dbt_prep_flow_converter/jaffle_shop_files/orders.sql"
+    assert fp.read_text() in get_sql_text()
 
 
 def test_run(mocker: MockerFixture, fake_tfl):
@@ -63,4 +62,3 @@ def test_run(mocker: MockerFixture, fake_tfl):
     result = run("dummy_path.tfl")
     print(result)
     assert result[0].content == "YAY, so much good."
-
