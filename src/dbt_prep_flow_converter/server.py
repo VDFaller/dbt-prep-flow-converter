@@ -12,7 +12,7 @@ from .convert import convert
 # Store notes as a simple key-value dict to demonstrate state management
 notes: dict[str, str] = {}
 
-server = Server("dbt_prep_flow_converter")
+server: Server = Server("dbt_prep_flow_converter")
 
 
 @server.list_resources()
@@ -184,7 +184,7 @@ async def handle_call_tool(
     ]
 
 
-async def main():
+async def main() -> None:
     # Run the server using stdin/stdout streams
     async with mcp.server.stdio.stdio_server() as (read_stream, write_stream):
         await server.run(
