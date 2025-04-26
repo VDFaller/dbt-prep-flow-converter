@@ -5,7 +5,7 @@ description = "A converter from Tableau Prep Flows to dbt SQL.  Currently runnin
 authors = [{ name = "Vince Faller", email = "vdfaller@gmail.com" }]
 readme = "README.md"
 keywords = ['python']
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
@@ -19,6 +19,7 @@ classifiers = [
 dependencies = [
     "langchain>=0.3.24",
     "langchain-openai>=0.3.14",
+    "mcp>=1.6.0",
 ]
 
 [project.urls]
@@ -120,3 +121,4 @@ source = ["src"]
 
 [project.scripts]
 rip_flow = "dbt_prep_flow_converter:run_cli"
+dbt_prep_flow_converter = "dbt_prep_flow_converter:main"

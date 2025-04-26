@@ -68,7 +68,7 @@ def get_sql_text() -> str:
     return txt
 
 
-def run(path_to_flow_file: Path | str) -> list[BaseMessage]:
+def convert(path_to_flow_file: Path | str) -> list[BaseMessage]:
     """Convert a TFL file to messages using prompt templates.
 
     Args:
@@ -102,7 +102,7 @@ def run_cli() -> None:
     parser.add_argument("path", type=str, help="Path to the TFL file")
     args = parser.parse_args()
 
-    output = run(args.path)
+    output = convert(args.path)
     with Path("output.md").open("w") as f:
         f.write(str(output[0].content))
 
@@ -110,6 +110,6 @@ def run_cli() -> None:
 # %%
 
 if __name__ == "__main__":
-    output = run("shipment_example.tfl")
+    output = convert("shipment_example.tfl")
     with Path(__file__).parent.joinpath("output.md").open("w") as f:
         f.write(str(output[0].content))
