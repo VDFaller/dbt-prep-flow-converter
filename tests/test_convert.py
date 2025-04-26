@@ -8,11 +8,11 @@ from langchain_core.runnables.base import RunnableSequence
 from pytest_mock import MockerFixture
 
 from dbt_prep_flow_converter.convert import (
-    convert,
     get_flow_file_from_tfl,
     get_human_prompt,
     get_sql_text,
     get_system_prompt,
+    run_conert,
 )
 
 # %%
@@ -59,6 +59,6 @@ def test_convert(mocker: MockerFixture, fake_tfl):
     # Mock ChatOpenAI to avoid requiring an API key
     mocker.patch("dbt_prep_flow_converter.convert.ChatOpenAI", return_value=mocker.MagicMock())
     mocker.patch("langchain_core.runnables.base.RunnableSequence", return_value=mock_chain)
-    result = convert("dummy_path.tfl")
+    result = run_conert("dummy_path.tfl")
     print(result)
     assert result[0].content == "YAY, so much good."

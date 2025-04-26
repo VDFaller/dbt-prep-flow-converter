@@ -7,7 +7,7 @@ from mcp.server import NotificationOptions, Server
 from mcp.server.models import InitializationOptions
 from pydantic import AnyUrl
 
-from .convert import convert
+from .convert import run_conert
 
 # Store notes as a simple key-value dict to demonstrate state management
 notes: dict[str, str] = {}
@@ -147,7 +147,7 @@ async def handle_call_tool(
 
         path = Path(arguments["path"]).resolve()
         # Convert the TFL file to DBT SQL
-        output = convert(path)
+        output = run_conert(path)
         return [
             types.TextContent(
                 type="text",
