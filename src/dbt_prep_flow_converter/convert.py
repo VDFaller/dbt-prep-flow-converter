@@ -90,7 +90,6 @@ def run(path_to_flow_file: Path | str) -> list[BaseMessage]:
     chat_prompt_template = ChatPromptTemplate.from_messages([get_system_prompt(), get_human_prompt()])
     chat = ChatOpenAI(model="o3-mini")
     chain = chat_prompt_template | chat
-    print(type(chain))
     output = chain.batch(payload)
     return output
 
