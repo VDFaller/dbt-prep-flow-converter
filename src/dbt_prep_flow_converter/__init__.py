@@ -1,7 +1,7 @@
 import asyncio
 
 from . import server
-from .convert import run_cli, run_conert
+from .convert import run_cli, run_convert
 
 
 def main() -> None:
@@ -9,4 +9,4 @@ def main() -> None:
     asyncio.run(server.main())
 
 
-__all__ = ["main", "run_cli", "run_conert", "server"]
+__all__ = ["main", "run_cli", "run_convert", "server"]
