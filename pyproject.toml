@@ -118,5 +118,4 @@ branch = true
 source = ["src"]
 
 [project.scripts]
-rip_flow = "dbt_prep_flow_converter:run_cli"
 dbt_prep_flow_converter = "dbt_prep_flow_converter:main"

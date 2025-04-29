@@ -60,13 +60,6 @@ To get the mcp server up and running. This assumes you have [uv](https://github.
 Then just let er rip.
 
 
-
-It also has a cli tool so you should be able to run it like this:
-
-```bash
-uv run rip_flow "/path/to/your/prep_flow.tfl"
-```
-
 ## Releasing a new version
 
 - Create an API Token on [PyPI](https://pypi.org/).
