@@ -6,16 +6,65 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/VDFaller/dbt-prep-flow-converter)](https://img.shields.io/github/commit-activity/m/VDFaller/dbt-prep-flow-converter)
 [![License](https://img.shields.io/github/license/VDFaller/dbt-prep-flow-converter)](https://img.shields.io/github/license/VDFaller/dbt-prep-flow-converter)
 
-A converter from Tableau Prep Flows to dbt SQL.  Currently running on dbt-duckdb/dbt-databricks and openAI only.
+A converter from Tableau Prep Flows to dbt SQL.
 
 - **Github repository**: <https://github.com/VDFaller/dbt-prep-flow-converter/>
 - **Documentation** <https://VDFaller.github.io/dbt-prep-flow-converter/>
 
+I've currently only tested with the VSCode mcp client.
+
+## Models
+I've tested these models and here's my subjective opinion on how they work with this.
+
+| Model             | Usefulness |
+| ----------------- | ---------- |
+| GPT-4o | unusable | ---------- |
+| Claude Sonnet 3.5 | decent     |
+
 ## Running
-It has a cli tool so you should be able to run it like this:
+To get the mcp server up and running. This assumes you have [uv](https://github.com/astral-sh/uv).
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/VDFaller/dbt-prep-flow-converter.git
+   cd dbt-prep-flow-converter
+   uv sync
+   ```
+2. I find it works best if you also have [dbt-mcp](https://github.com/dbt-labs/dbt-mcp).
+3. you'll then have to add them to your mcp config (VSCode Shown)
+   ```json
+       "mcp": {
+			"inputs": [],
+			"servers": {
+				"dbt": {
+					"command": "/home/YOURUSERNAME/.dbt-mcp/.venv/bin/mcp",
+					"args": [
+						"run",
+						"/path/to/your/dbt-mcp/src/dbt_mcp/main.py"
+					]
+				},
+				"dbt-prep-flow-converter": {
+					"command": "uv",
+					"args": [
+						"--directory",
+						"/path/to/your/dbt-prep-flow-converter",
+						"run",
+						"dbt_prep_flow_converter"
+					]
+				},
+			}
+		},
+	```
+
+
+Then just let er rip.
+
+
+
+It also has a cli tool so you should be able to run it like this:
 
 ```bash
-uv run rip_flow "/home/faller/repos/tab-flow-converter/src/tab_flow_converter/shipment_example.tfl"
+uv run rip_flow "/path/to/your/prep_flow.tfl"
 ```
 
 ## Releasing a new version

@@ -1,3 +1,9 @@
-from dbt_prep_flow_converter.convert import run, run_cli
+from .fast_mcp_server import mcp
 
-__all__ = ["run", "run_cli"]
+
+def main() -> None:
+    """Main entry point for the package."""
+    mcp.run(transport="stdio")
+
+
+__all__ = ["main"]

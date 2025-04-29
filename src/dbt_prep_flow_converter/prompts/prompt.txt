@@ -1,5 +1,0 @@
-Hello, I'm wondering if you can translate this prep flow into good dbt-databricks SQL.
-
-```json
-{flow_text}
-```

@@ -1,11 +1,11 @@
 [project]
 name = "dbt-prep-flow-converter"
 version = "0.0.1"
-description = "A converter from Tableau Prep Flows to dbt SQL.  Currently running on dbt-duckdb/dbt-databricks and openAI only."
+description = "A converter from Tableau Prep Flows to dbt SQL."
 authors = [{ name = "Vince Faller", email = "vdfaller@gmail.com" }]
 readme = "README.md"
 keywords = ['python']
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
@@ -17,8 +17,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "langchain>=0.3.24",
-    "langchain-openai>=0.3.14",
+    "mcp>=1.6.0",
 ]
 
 [project.urls]
@@ -120,3 +119,4 @@ source = ["src"]
 
 [project.scripts]
 rip_flow = "dbt_prep_flow_converter:run_cli"
+dbt_prep_flow_converter = "dbt_prep_flow_converter:main"
