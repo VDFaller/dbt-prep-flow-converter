@@ -30,6 +30,7 @@ def test_get_flow_file_from_tfl(fake_tfl):
 def test_prep_flow_converter(fake_tfl: Path):
     """Test the flow prompt."""
     messages = prep_flow_converter(fake_tfl)
+    assert len(messages) >= 3, "Should have at least 3 messages. Users/Assistant/User"
     message = messages[0]
     assert isinstance(message, UserMessage)
     assert message.role == "user"
