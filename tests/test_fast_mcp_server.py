@@ -4,7 +4,7 @@ from pathlib import Path
 import pytest
 from mcp.server.fastmcp.prompts.base import UserMessage
 
-from dbt_prep_flow_converter.fast_mcp_server import flow_prompt, get_flow_file_from_tfl, get_sql_text
+from dbt_prep_flow_converter.fast_mcp_server import get_flow_file_from_tfl, get_sql_text, prep_flow_converter
 
 
 @pytest.fixture
@@ -27,10 +27,11 @@ def test_get_flow_file_from_tfl(fake_tfl):
     assert get_flow_file_from_tfl(fake_tfl) == '{"key": "value"}'
 
 
-def test_flow_prompt(fake_tfl: Path):
+def test_prep_flow_converter(fake_tfl: Path):
     """Test the flow prompt."""
-    prompt = flow_prompt(fake_tfl)
-    assert isinstance(prompt, UserMessage)
-    assert prompt.role == "user"
-    assert prompt.content.type == "text"
-    assert '{"key": "value"}' in prompt.content.text
+    messages = prep_flow_converter(fake_tfl)
+    message = messages[0]
+    assert isinstance(message, UserMessage)
+    assert message.role == "user"
+    assert message.content.type == "text"
+    assert '{"key": "value"}' in messages[2].content.text
