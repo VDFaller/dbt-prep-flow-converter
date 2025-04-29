@@ -1,12 +1,9 @@
-import asyncio
-
-from . import server
-from .convert import run_cli, run_convert
+from .fast_mcp_server import mcp
 
 
 def main() -> None:
     """Main entry point for the package."""
-    asyncio.run(server.main())
+    mcp.run(transport="stdio")
 
 
-__all__ = ["main", "run_cli", "run_convert", "server"]
+__all__ = ["main"]
