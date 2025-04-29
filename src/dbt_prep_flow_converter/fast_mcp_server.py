@@ -34,7 +34,7 @@ def get_sql_text() -> str:
         str: The SQL prompt.
     """
     txt = ""
-    for file in (HERE / "jaffle_shop_files").glob("*.sql"):
+    for file in (HERE / "jaffle_shop_files").rglob("*.sql"):
         with file.open("r") as f:
             query_txt = f.read()
         txt += f"\n\n```sql\n-- {file.stem}\n\n{query_txt}\n```"

@@ -19,7 +19,7 @@ def fake_tfl(tmp_path: Path):
 
 def test_get_sql_text():
     """Just going to select a random file in the jaffle_shop_files directory."""
-    fp = Path(__file__).parent.parent / "src/dbt_prep_flow_converter/jaffle_shop_files/orders.sql"
+    fp = Path(__file__).parent.parent / "src/dbt_prep_flow_converter/jaffle_shop_files/mart/orders.sql"
     assert fp.read_text() in get_sql_text()
 
 
