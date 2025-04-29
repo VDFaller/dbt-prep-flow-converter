@@ -6,7 +6,7 @@
 [![Commit activity](https://img.shields.io/github/commit-activity/m/VDFaller/dbt-prep-flow-converter)](https://img.shields.io/github/commit-activity/m/VDFaller/dbt-prep-flow-converter)
 [![License](https://img.shields.io/github/license/VDFaller/dbt-prep-flow-converter)](https://img.shields.io/github/license/VDFaller/dbt-prep-flow-converter)
 
-A converter from Tableau Prep Flows to dbt SQL.  Currently running on dbt-duckdb/dbt-databricks and openAI only.
+A converter from Tableau Prep Flows to dbt SQL.
 
 - **Github repository**: <https://github.com/VDFaller/dbt-prep-flow-converter/>
 - **Documentation** <https://VDFaller.github.io/dbt-prep-flow-converter/>
