@@ -11,6 +11,16 @@ A converter from Tableau Prep Flows to dbt SQL.  Currently running on dbt-duckdb
 - **Github repository**: <https://github.com/VDFaller/dbt-prep-flow-converter/>
 - **Documentation** <https://VDFaller.github.io/dbt-prep-flow-converter/>
 
+I've currently only tested with the VSCode mcp client.
+
+## Models
+I've tested these models and here's my subjective opinion on how they work with this.
+
+| Model             | Usefulness |
+| ----------------- | ---------- |
+| GPT-4o | unusable | ---------- |
+| Claude Sonnet 3.5 | decent     |
+
 ## Running
 To get the mcp server up and running. This assumes you have [uv](https://github.com/astral-sh/uv).
 
@@ -40,10 +50,7 @@ To get the mcp server up and running. This assumes you have [uv](https://github.
 						"/path/to/your/dbt-prep-flow-converter",
 						"run",
 						"dbt_prep_flow_converter"
-					],
-					"env": {
-						"OPENAI_API_KEY": "sk-YOUR_API_KEY",
-					}
+					]
 				},
 			}
 		},
