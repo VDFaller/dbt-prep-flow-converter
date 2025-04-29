@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import cast
 
 from mcp import types
-from mcp.server.fastmcp import Context, FastMCP
+from mcp.server.fastmcp import FastMCP
 from mcp.server.fastmcp.prompts.base import UserMessage
 
 # Initialize FastMCP server
@@ -42,7 +42,7 @@ def get_sql_text() -> str:
 
 
 @mcp.prompt()
-def get_system_prompt_mcp(flow_path: str) -> UserMessage:
+def flow_prompt(flow_path: str) -> UserMessage:
     """Load and return the system message prompt from 'system_prompt.txt'.
 
     Returns:
@@ -50,10 +50,9 @@ def get_system_prompt_mcp(flow_path: str) -> UserMessage:
     """
     example_flow = get_flow_file_from_tfl(HERE.joinpath("jaffle_shop_files", "jaffle_shop.tfl"))
     sql_text = get_sql_text()
-    system_prompt = HERE.joinpath("prompts", "system_prompt.txt").read_text()
-    system_prompt = system_prompt.format(
-        example_flow=example_flow, sql_text=sql_text, flow_text=get_flow_file_from_tfl(flow_path)
-    )
+    flow_text = get_flow_file_from_tfl(flow_path)
+    system_prompt = HERE.joinpath("prompts", "flow_prompt.md").read_text()
+    system_prompt = system_prompt.format(example_flow=example_flow, sql_text=sql_text, flow_text=flow_text)
     return UserMessage(content=system_prompt)
 
 
@@ -63,12 +62,12 @@ async def prep_flow_converter(
 ) -> list[UserMessage]:
     "Gets the prompt required to convert a TFL file to a set of SQL files."
     return [
-        get_system_prompt_mcp(path_to_flow),
+        flow_prompt(path_to_flow),
     ]
 
 
 @mcp.tool()
-async def convert_prep_flow(path_to_flow: str, ctx: Context) -> str:
+async def convert_prep_flow(path_to_flow: str) -> str:
     """Convert a TFL file to a set of SQL files."""
     path_to_flow = str(Path(path_to_flow).resolve())
     prompt_result: list[UserMessage] = await prep_flow_converter(path_to_flow)
