@@ -1,8 +1,9 @@
 # %%
 import zipfile
 from pathlib import Path
-from typing import Any
+from typing import cast
 
+from mcp import types
 from mcp.server.fastmcp import Context, FastMCP
 from mcp.server.fastmcp.prompts.base import UserMessage
 
@@ -59,7 +60,7 @@ def get_system_prompt_mcp(flow_path: str) -> UserMessage:
 @mcp.prompt()
 async def prep_flow_converter(
     path_to_flow: str,
-) -> Any:
+) -> list[UserMessage]:
     "Gets the prompt required to convert a TFL file to a set of SQL files."
     return [
         get_system_prompt_mcp(path_to_flow),
@@ -71,8 +72,8 @@ async def convert_prep_flow(path_to_flow: str, ctx: Context) -> str:
     """Convert a TFL file to a set of SQL files."""
     path_to_flow = str(Path(path_to_flow).resolve())
     prompt_result: list[UserMessage] = await prep_flow_converter(path_to_flow)
-
-    return prompt_result[0].content.text
+    content = cast(types.TextContent, prompt_result[0].content)
+    return content.text
 
 
 # %%
