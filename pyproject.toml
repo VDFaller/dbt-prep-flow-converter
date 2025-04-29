@@ -17,8 +17,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "langchain>=0.3.24",
-    "langchain-openai>=0.3.14",
     "mcp>=1.6.0",
 ]
 
