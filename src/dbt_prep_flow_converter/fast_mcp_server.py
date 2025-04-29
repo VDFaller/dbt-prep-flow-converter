@@ -43,7 +43,7 @@ def get_sql_text() -> str:
 
 @mcp.prompt()
 def flow_prompt(flow_path: str) -> UserMessage:
-    """Load and return the system message prompt from 'system_prompt.txt'.
+    """Load and return the system message prompt from 'flow_prompt.md'.
 
     Returns:
         UserMessage: The system prompt
