@@ -29,17 +29,3 @@ In order to help you understand how the flow file operates, Below is an example 
 it was created using these exact dbt files
 
 {sql_text}
-
-
-
-Now that you know how to convert the example.  I want you to convert this flow. Make sure you don't just return the example flow to me.
-
-
-```json
-{flow_text}
-```
-
-
-The user will ONLY care about the flow file they give you, so don't show them any example outputs.
-If the model needs to be split up into multiple models, please split it up as multiple SQL outputs that reference one another.
-Please format it as markdown and make sure all sql codeblocks are marked appropriately.
