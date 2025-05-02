@@ -31,7 +31,7 @@ To get the mcp server up and running. This assumes you have [uv](https://github.
    uv sync
    ```
 2. I find it works best if you also have [dbt-mcp](https://github.com/dbt-labs/dbt-mcp), though it isn't necessary to function.
-3. You'll then have to add them to your mcp config (VSCode Shown). More information regarding setting up and using MCP servers in VSCode, visit [this documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers).
+3. You'll then have to add them to your mcp config (VSCode Shown). For more information regarding setting up and using MCP servers in VSCode, visit [this VSCode documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers).
    ```json
        "mcp": {
 			"inputs": [],
